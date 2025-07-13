@@ -9,21 +9,12 @@ import {
   postProductController,
 } from '../controllers/products.js';
 
-const productsRouter = Router();
+const router = Router();
 
-productsRouter.get('/products', ctrlWrapper(getProductsController));
-productsRouter.get(
-  '/products/:productId',
-  ctrlWrapper(getProductByIdController),
-);
-productsRouter.post('/products', ctrlWrapper(postProductController));
-productsRouter.patch(
-  '/products/:productId',
-  ctrlWrapper(patchProductController),
-);
-productsRouter.delete(
-  '/products/:productId',
-  ctrlWrapper(deleteProductController),
-);
+router.get('/products', ctrlWrapper(getProductsController));
+router.get('/products/:productId', ctrlWrapper(getProductByIdController));
+router.post('/products', ctrlWrapper(postProductController));
+router.patch('/products/:productId', ctrlWrapper(patchProductController));
+router.delete('/products/:productId', ctrlWrapper(deleteProductController));
 
-export default productsRouter;
+export default router;
