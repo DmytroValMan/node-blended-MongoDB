@@ -8,13 +8,28 @@ import {
   patchProductController,
   postProductController,
 } from '../controllers/products.js';
+import {
+  createProductsSchema,
+  updateProductsSchema,
+} from '../validation/products.js';
+import { validateBody } from '../middlewares/validateBody.js';
+import { isValidId } from '../middlewares/isValidId.js';
 
 const router = Router();
 
-router.get('/products', ctrlWrapper(getProductsController));
-router.get('/products/:productId', ctrlWrapper(getProductByIdController));
-router.post('/products', ctrlWrapper(postProductController));
-router.patch('/products/:productId', ctrlWrapper(patchProductController));
-router.delete('/products/:productId', ctrlWrapper(deleteProductController));
+router.get('/', ctrlWrapper(getProductsController));
+router.get('/:productId', isValidId, ctrlWrapper(getProductByIdController));
+router.post(
+  '/',
+  validateBody(createProductsSchema),
+  ctrlWrapper(postProductController),
+);
+router.patch(
+  '/:productId',
+  isValidId,
+  validateBody(updateProductsSchema),
+  ctrlWrapper(patchProductController),
+);
+router.delete('/:productId', isValidId, ctrlWrapper(deleteProductController));
 
 export default router;
