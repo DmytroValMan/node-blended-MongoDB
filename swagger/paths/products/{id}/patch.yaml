@@ -1,0 +1,66 @@
+tags:
+  - Products
+summary: Update product
+operationId: updateProduct
+description: 'Update a product by id'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: productId
+    required: true
+    schema:
+      type: string
+      example: '6882511ee937211982457993'
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          name:
+            description: 'Product name'
+            type: string
+            example: Smartwatch
+          price:
+            description: 'Product price'
+            type: number
+            example: 199.99
+          category:
+            description: 'Product cetegory'
+            type: string
+            enum: ['books', 'electronics', 'clothing', 'other']
+            default: other
+          description:
+            type: string
+            description: 'description of product'
+            example: 'Smartwatch with fitness tracking features'
+responses:
+  '200':
+    description: 'Update a product'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully patched a product
+            data:
+              type: object
+              $ref: ../../../components/schemas/product.yaml
+  '400':
+    $ref: '../../../components/responses/400.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

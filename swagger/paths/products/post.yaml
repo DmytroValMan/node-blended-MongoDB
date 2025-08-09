@@ -1,0 +1,61 @@
+tags:
+  - Products
+summary: Create product
+operationId: createProduct
+description: 'Create a product with payload'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - price
+          - category
+        properties:
+          name:
+            description: 'Product name'
+            type: string
+            example: 'Smartwatch'
+          price:
+            description: 'Product price'
+            type: number
+            example: 199.99
+          category:
+            description: 'Product cetegory'
+            type: string
+            enum: ['books', 'electronics', 'clothing', 'other']
+            default: other
+          description:
+            type: string
+            description: 'description of product'
+            example: 'Smartwatch with fitness tracking features'
+responses:
+  '201':
+    description: 'Create a product'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a product
+            data:
+              type: object
+              $ref: ../../components/schemas/product.yaml
+  '400':
+    $ref: '../../components/responses/400.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '500':
+    $ref: ../../components/responses/500.yaml

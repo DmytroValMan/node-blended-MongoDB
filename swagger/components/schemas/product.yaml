@@ -1,0 +1,40 @@
+type: object
+required:
+  - _id
+  - name
+  - price
+  - category
+  - userId
+properties:
+  _id:
+    type: string
+    description: Product id
+    example: 68847335b645c91bbc125191
+  name:
+    type: string
+    description: Product name
+    example: Smartwatch
+  price:
+    type: number
+    description: Product price
+    example: 100.50
+  category:
+    type: string
+    description: Product category
+    example: electronics
+  userId:
+    type: string
+    description: Product user id
+    example: 6871fb0cdb18a1a2c9fc4286
+  description:
+    type: string
+    description: Product description
+    example: Smartwatch with fitness tracking features
+  createdAt:
+    type: string
+    description: 'Time of product creation'
+    example: 2024-04-05T06:15:00Z
+  updatedAt:
+    type: string
+    description: 'Time of product updating'
+    example: 2024-05-20T08:30:00Z
